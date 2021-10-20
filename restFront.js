@@ -46,3 +46,20 @@ async function getUser() {
 		console.error(err);
 	}
 }
+
+window.onload = getUser; //화면 로딩 시 getUser 호출
+//폼 제출(submit) 시 실행
+document.getElementById('form').addEventListener('submit', async (e) => {
+	e.preventDefault();
+	const name = e.target.username.value;
+	if (!name) {
+		return alert('이름을 입력하세요');
+	}
+	try {
+		await axios.post('/user/', { name });
+		getUser();
+	} catch (err) {
+		console.error(err);
+	}
+	e.target.username.value = '';
+});
