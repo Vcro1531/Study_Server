@@ -28,7 +28,7 @@ http
 			res.writeHead(302, {
 				Location: '/',
 				'Set-Cookie': `name=${encodeURIComponent(name)}; expires=${expires.toGMTString()};HttpOnly;Path=`,
-			});
+			}); //encodeURIComponent : 한글과 줄바꿈은 쿠키에 들어가면 안되는 글자이기 때문에 감싸서 넣음
 			res.end();
 
 			//name이라는 쿠키가 있는 경우
